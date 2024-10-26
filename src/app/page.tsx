@@ -1,12 +1,18 @@
+"use client";
+
+import { ShowGraph } from "@/components/types";
+import { useState } from "react";
+import PathCard from "@/components/path-card";
+
 export default function Home() {
+  const [state, setState] = useState<ShowGraph>("false");
+
   return (
-    <main className="flex h-screen text-white">
-      <div className="w-1/3 p-4 overflow-y-auto border-r border-gray-800">
-        Left Panel
+    <div className="flex flex-col items-center justify-start min-h-screen p-4 text-white">
+      <div className="w-full max-w-3xl space-y-4">
+        <PathCard setState={setState} />
+        {state === "true" ? <div>Graph will be displayed here</div> : ""}
       </div>
-      <div className="w-2/3 bg-[#111111] p-4">
-        <div className="w-full h-full bg-[#1a1a1a] rounded-lg flex">Map</div>
-      </div>
-    </main>
+    </div>
   );
 }
