@@ -1,5 +1,3 @@
-"use client";
-
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Select,
@@ -14,11 +12,11 @@ import { useState } from "react";
 import campusGraph from "@/lib/graph";
 import { ShowGraph } from "./types";
 
-interface PathCardProps {
+interface PathSelectCardProps {
   setState: (state: ShowGraph) => void;
 }
 
-export const PathCard = ({ setState }: PathCardProps) => {
+export const PathSelectCard = ({ setState }: PathSelectCardProps) => {
   const locations = Object.keys(campusGraph);
   const [startPoint, setStartPoint] = useState("");
   const [endPoint, setEndPoint] = useState("");
@@ -45,7 +43,11 @@ export const PathCard = ({ setState }: PathCardProps) => {
             </SelectTrigger>
             <SelectContent className="bg-[#2a2a2a]">
               {locations.map((location) => (
-                <SelectItem key={location} value={location}>
+                <SelectItem
+                  key={location}
+                  value={location}
+                  className="hover:bg-gray-700 focus:bg-gray-700 focus:text-white"
+                >
                   {location}
                 </SelectItem>
               ))}
@@ -65,7 +67,11 @@ export const PathCard = ({ setState }: PathCardProps) => {
             </SelectTrigger>
             <SelectContent className="bg-[#2a2a2a]">
               {locations.map((location) => (
-                <SelectItem key={location} value={location}>
+                <SelectItem
+                  key={location}
+                  value={location}
+                  className="hover:bg-gray-700 focus:bg-gray-700 focus:text-white"
+                >
                   {location}
                 </SelectItem>
               ))}
@@ -102,7 +108,7 @@ export const PathCard = ({ setState }: PathCardProps) => {
               Calculating...
             </span>
           ) : (
-            "Find Path"
+            "Go"
           )}
         </Button>
       </CardContent>
@@ -110,4 +116,4 @@ export const PathCard = ({ setState }: PathCardProps) => {
   );
 };
 
-export default PathCard;
+export default PathSelectCard;
