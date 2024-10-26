@@ -33,4 +33,4 @@ const campusGraph = {
   },
 };
 
-export default campusGraph;
+export const points = Object.keys(campusGraph);
