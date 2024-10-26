@@ -9,8 +9,8 @@ import {
   ShowGraph,
 } from "./types";
 import { Card, CardContent } from "./ui/card";
-import * as d3 from "d3";
 import { campusGraph, points } from "@/lib/graph";
+import * as d3 from "d3";
 
 interface PathVisualCardProps {
   showGraph: ShowGraph;
@@ -190,7 +190,7 @@ export const PathVisualCard = ({
                 </h3>
                 <ul className="list-disc pl-5 space-y-1 text-sm text-gray-300">
                   {allPaths.map((path, index) => (
-                    <li key={index}>
+                    <li key={index} className="font-medium">
                       {path.join(" → ")} (Distance:{" "}
                       {calculatePathDistance(path)})
                     </li>
@@ -199,14 +199,13 @@ export const PathVisualCard = ({
                 <h3 className="text-md font-semibold mt-4 mb-2 text-white">
                   Shortest Path:
                 </h3>
-                <p className="text-sm text-gray-300">
+                <p className="text-sm text-gray-300 font-medium">
                   {path.join(" → ")} (Distance: {distance})
                 </p>
               </>
             ) : (
               <p className="text-gray-300 text-center py-8">
-                Click <b>Find</b> to generate the graph and shortest path using
-                Dijkstra's algorithm
+                Select points to generate the graph and shortest path
               </p>
             )}
           </>
