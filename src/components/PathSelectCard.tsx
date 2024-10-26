@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   AllPathsResult,
   DijkstraResult,
@@ -6,7 +5,6 @@ import {
   LoadingState,
   MainState,
   Path,
-  PathDistanceResult,
   ShowGraph,
 } from "./types";
 import { campusGraph, points } from "@/lib/graph";
@@ -25,21 +23,28 @@ import { useToast } from "@/hooks/use-toast";
 interface PathSelectCardProps {
   setShowGraph: (state: ShowGraph) => void;
   setLoading: (state: LoadingState) => void;
+  startPoint: MainState["startPoint"];
+  endPoint: MainState["endPoint"];
+  setStartPoint: (state: MainState["startPoint"]) => void;
+  setEndPoint: (state: MainState["endPoint"]) => void;
+  setPath: (state: MainState["path"]) => void;
+  setDistance: (state: MainState["distance"]) => void;
+  setAllPaths: (state: MainState["allPaths"]) => void;
 }
 
 export const PathSelectCard = ({
   setShowGraph,
   setLoading,
+  startPoint,
+  endPoint,
+  setStartPoint,
+  setEndPoint,
+  setPath,
+  setDistance,
+
+  setAllPaths,
 }: PathSelectCardProps) => {
   const { toast } = useToast();
-  const [startPoint, setStartPoint] = useState<MainState["startPoint"]>("");
-  const [endPoint, setEndPoint] = useState<MainState["endPoint"]>("");
-  const [path, setPath] = useState<MainState["path"]>([]);
-  const [distance, setDistance] = useState<MainState["distance"]>(0);
-  const [algorithmSteps, setAlgorithmSteps] = useState<
-    MainState["algorithmSteps"]
-  >([]);
-  const [allPaths, setAllPaths] = useState<MainState["allPaths"]>([]);
 
   function dijkstra(graph: Graph, start: string, end: string): DijkstraResult {
     const distances: { [key: string]: number } = {};
@@ -112,14 +117,6 @@ export const PathSelectCard = ({
     return paths;
   }
 
-  function calculatePathDistance(path: Path): PathDistanceResult {
-    let distance = 0;
-    for (let i = 0; i < path.length - 1; i++) {
-      distance += campusGraph[path[i]][path[i + 1]];
-    }
-    return distance;
-  }
-
   const handleGo = () => {
     if (!startPoint || !endPoint) {
       toast({
@@ -149,7 +146,6 @@ export const PathSelectCard = ({
       const result = dijkstra(campusGraph, startPoint, endPoint);
       setPath(result.path);
       setDistance(result.distance);
-      setAlgorithmSteps(result.allPaths);
       setShowGraph("true");
       const paths = findAllPaths(campusGraph, startPoint, endPoint);
       setAllPaths(paths);

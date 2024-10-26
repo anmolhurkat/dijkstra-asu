@@ -29,6 +29,17 @@ export type MainState = {
   endPoint: string;
   path: Path;
   distance: number;
-  algorithmSteps: DijkstraResult["allPaths"];
   allPaths: AllPathsResult;
+};
+
+export type D3Node = {
+  id: string;
+  x?: number;
+  y?: number;
+};
+
+export type D3Link = {
+  source: string | D3Node;
+  target: string | D3Node;
+  value: number;
 };
