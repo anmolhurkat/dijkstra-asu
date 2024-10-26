@@ -1,4 +1,6 @@
-const campusGraph = {
+import { Graph } from "@/components/types";
+
+export const campusGraph: Graph = {
   "Engineering Center A": {
     "Hayden Library": 2,
     "Tooker House": 4,
