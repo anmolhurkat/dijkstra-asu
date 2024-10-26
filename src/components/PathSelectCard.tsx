@@ -136,10 +136,6 @@ export const PathSelectCard = ({
       return;
     }
 
-    toast({
-      title: "",
-      description: "",
-    });
     setLoading("loading");
 
     setTimeout(() => {

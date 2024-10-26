@@ -39,7 +39,7 @@ export const PathVisualCard = ({
     console.log(startPoint, endPoint);
     if (showGraph === "false") return;
     const width = 600;
-    const height = 400;
+    const height = 500;
     const nodeRadius = 30;
 
     const svg = d3
@@ -149,7 +149,7 @@ export const PathVisualCard = ({
 
       label.attr("transform", (d) => `translate(${d.x},${d.y})`);
     });
-  }, [showGraph, startPoint, endPoint, path]);
+  }, [showGraph, path]);
 
   return (
     <Card className="bg-[#1a1a1a] border-gray-700">
